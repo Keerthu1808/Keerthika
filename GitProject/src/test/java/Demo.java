@@ -7,4 +7,8 @@ public class Demo {
 
 	}
 
+	public void textDemo1()
+	{
+		
+	}
 }
