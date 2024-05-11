@@ -1,0 +1,85 @@
+Feature: Verify Login Module
+
+Scenario Outline: User Login And Verify Select Hotel
+	Given User on the OMR Branch Page
+	When User enter "<username>" and "<password>"
+	And User click login button 
+	And User click HotelBooking  Option and fill all field "<state>","<city>","<roomtype>","<checkin>","<checkout>","<room>","<adults>","<child>"
+				click search button
+	Then User should verify selected hotel 
+	
+	Examples:
+	
+		|username|password|state|city|roomtype|checkin|checkout|room|adults|child|
+		|keerthikakeerthuu@gmail.com|Keerthu18@|Tamil Nadu|Chennai|Deluxe|27|02|2|4|2|
+	
+
+Scenario Outline: With Mandatory filed and verify select hotel
+	Given User on the OMR Branch Page
+	When User enter "<username>" and "<password>"
+	And User click login button 
+	And User click HotelBooking  Option and fill all field "<state>","<city>","<checkin>","<checkout>","<room>","<adults>",
+			and	click search button
+	Then User should verify selected hotel 
+	
+	Examples:
+	
+		|username|password|state|city|checkin|checkout|room|adults|
+		|keerthikakeerthuu@gmail.com|Keerthu18@|Tamil Nadu|Chennai|27|02|2|4|
+
+
+Scenario Outline: Without Enter any Field 
+	Given User on the OMR Branch Page
+	When User enter "<username>" and "<password>"
+	And User click login button 
+	And User click HotelBooking  Option and without enter any field and click search button
+	Then User should verify error msg "Please select state","Please select city","Please select Check-in date","Please select Check-out date","Please select no. of rooms","Please select no. of adults"
+
+
+Scenario Outline: Select room type option verify ends with hotel name
+	Given User on the OMR Branch Page
+	When User enter "<username>" and "<password>"
+	And User click login button 
+	And User click HotelBooking  Option and select one room type "<state>","<city>","<roomtype>","<checkin>","<checkout>","<room>","<adults>","<child>"
+	And user click search button
+	Then User should Verify hotel name ends with room type
+	
+Examples:
+	
+		|username|password|state|city|roomtype|checkin|checkout|room|adults|child|
+		|keerthikakeerthuu@gmail.com|Keerthu18@|Tamil Nadu|Chennai|Deluxe|27|02|2|4|2|
+
+
+Scenario Outline: Select room type option verify ends with hotel name
+	Given User on the OMR Branch Page
+	When User enter "<username>" and "<password>"
+	And User click login button 
+	And User click HotelBooking  Option and fill all field with all room type "<state>","<city>","<roomtype>","<checkin>","<checkout>","<room>","<adults>","<child>"
+	And user click search button
+	Then User should verify header with "Standard/Deluxe/Suite/Luxury/Studio"
+		
+Examples:
+	
+		|username|password|state|city|roomtype|checkin|checkout|room|adults|child|
+		|keerthikakeerthuu@gmail.com|Keerthu18@|Tamil Nadu|Chennai|Standard/Deluxe/Suite/Luxury/Studio|27|02|2|4|2|
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

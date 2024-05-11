@@ -1,0 +1,5 @@
+Feature: Verifying omrbranch ChangeBooking module
+
+	Scenario Outline: Modify the checkin date in myBooking page
+	Given User is on the omrbranch page
+    

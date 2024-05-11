@@ -1,0 +1,4 @@
+Feature: Verifying omrbranch CancelBooking module
+
+	Scenario Outline: Modify the checkin date in myBooking page
+	

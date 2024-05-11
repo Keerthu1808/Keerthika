@@ -1,0 +1,8 @@
+Feature: Verifying omrbranch ChangeBooking module
+
+	Scenario Outline: Modify the checkin date in myBooking page
+	Given User is on the omrbranch Page
+	When User enter "<userName>","<passWord>"
+	Then User should verify after login success message "welcome Keerthika"
+	
+    

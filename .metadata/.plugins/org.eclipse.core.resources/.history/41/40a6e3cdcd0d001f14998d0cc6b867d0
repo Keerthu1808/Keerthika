@@ -1,0 +1,109 @@
+Feature: Verifying omrbranch searchHotel module
+
+ 
+  Scenario Outline: Verify search all field and verify select hotel with including options
+    Given User is on the omrbranch page
+    When User login "<userName>","<passWord>"
+    Then User should verify the after login success Message "welcome Keerthika"
+    When User search hotel "<state>","<city>","<roomType>","<checkInDate>","<checkOutDate>","<noOfRoom>","<noOfAdults>" and "<noOfChild>"
+    Then User should verify the search hotel  success message "Select Hotel"
+
+    Examples: 
+      | userName                  | passWord  | state      | city    | roomType | checkInDate | checkOutDate | noOfRoom | noOfAdults | noOfChild |
+      | keerthikakeerthuu@gmail.com|Keerthu18@| Tamil Nadu | Chennai | Luxury   | 2024-05-03  | 2024-05-07   | 3-Three  | 5-Five     |         2 |
+
+  
+  Scenario Outline: Verify enter only mandatory field and verify select hotel
+    Given User is on the omrbranch page
+    When User login "<userName>","<passWord>"
+    Then User should verify the after login success Message "welcome Keerthika"
+    When User search hotel mandatory field "<state>","<city>","<checkInDate>","<checkOutDate>","<noOfRoom>" and "<noOfAdults>"
+    And User should verify the search hotel  success message "Select Hotel"
+
+    Examples: 
+      | userName                  | passWord  | state      | city    | checkInDate | checkOutDate | noOfRoom | noOfAdults |
+      | keerthikakeerthuu@gmail.com | Keerthu18@ | Tamil Nadu | Chennai | 2024-05-03  | 2024-05-07   | 3-Three  | 5-Five     |
+
+ 
+  Scenario: Verify click search without enter any field and verify error message
+    Given User is on the omrbranch page
+    When User login "<userName>","<passWord>"
+    Then User should verify the after login success Message "welcome Keerthika"
+    When User searches without entering any field
+    Then User should verify search hotel Error message "Please select state","Please select city","Please select Check-in date","Please select Check-out date","Please select no. of rooms" and "Please select no. of adults"
+
+  Scenario Outline: Verify hotel name with All selected roomType
+    Given User is on the omrbranch page
+    When User login "<userName>","<passWord>"
+    Then User should verify the after login success Message "welcome Keerthika"
+    When User search hotel "<state>","<city>","<roomType>","<checkInDate>","<checkOutDate>","<noOfRoom>","<noOfAdults>" and "<noOfChild>"
+    Then User should verify the search hotel  success message "Select Hotel"
+    And User should verify all RoomType is matching with header "<roomType>"
+
+    Examples: 
+      | userName                  | passWord  | state      | city    | roomType                            | checkInDate | checkOutDate | noOfRoom | noOfAdults | noOfChild |
+      | keerthikakeerthuu@gmail.com | Keerthu18@ | Tamil Nadu | Chennai | Deluxe/Suite/Luxury/Standard/Studio | 2024-05-03  | 2024-05-07   | 3-Three  | 5-Five     |         2 |
+
+  Scenario Outline: Verify Hotel name with filtered room type
+    Given User is on the omrbranch page
+    When User login "<userName>","<passWord>"
+    Then User should verify the after login success Message "welcome Keerthika"
+    When User searche hotel "<state>","<city>","<roomType>","<checkInDate>","<checkOutDate>","<noOfRoom>","<noOfAdults>" and "<noOfChild>"
+    Then User should verify the search hotel success message "Select Hotel"
+    And User should verify selected room type  is present at the end of the Hotelname "<roomType>"
+
+    Examples: 
+      | userName                  | passWord  | state      | city    | roomType | checkInDate | checkOutDate | noOfRoom | noOfAdults | noOfChild |
+      | keerthikakeerthuu@gmail.com | Keerthu18@ | Tamil Nadu | Chennai | Luxury   | 2024-05-03  | 2024-05-07   | 3-Three  | 5-Five     |         2 |
+
+  Scenario Outline: Verifying sorting functionality hotel price from low to high
+    Given User is on the omrbranch page
+    When User login "<userName>","<passWord>"
+    Then User should verify the after login success Message "welcome Ramya"
+    When User search hotel "<state>","<city>","<roomType>","<checkInDate>","<checkOutDate>","<noOfRoom>","<noOfAdults>" and "<noOfChild>"
+    Then User should verify the search hotel success message "Select Hotel"
+    When User click sorting functionality price low to high
+    Then User should verify Hotel price from low to high
+
+    Examples: 
+      | userName                  | passWord  | state      | city    | roomType | checkInDate | checkOutDate | noOfRoom | noOfAdults | noOfChild |
+      | keerthikakeerthuu@gmail.com | Keerthu18@ | Tamil Nadu | Chennai | Luxury   | 2024-05-03  | 2024-05-07   | 3-Three  | 5-Five     |         2 |
+
+  Scenario Outline: Verifying sorting functionality hotel price from high to low
+    Given User is on the omrbranch page
+    When User login "<userName>","<passWord>"
+    Then User should verify the after login success Message "welcome Ramya"
+    When User search hotel "<state>","<city>","<roomType>","<checkInDate>","<checkOutDate>","<noOfRoom>","<noOfAdults>" and "<noOfChild>"
+    Then User should verify the search hotel success message "Select Hotel"
+    When User click  sorting functionality price high to low
+    Then User should verify Hotel price from high to low
+
+    Examples: 
+      | userName                  | passWord  | state      | city    | roomType | checkInDate | checkOutDate | noOfRoom | noOfAdults | noOfChild |
+      | ramyaganesan465@gmail.com | Shai@2021 | Tamil Nadu | Chennai | Luxury   | 2024-05-03  | 2024-05-07   | 3-Three  | 5-Five     |         2 |
+
+  Scenario Outline: Verifying hotel name in ascending order
+    Given User is on the omrbranch page
+    When User login "<userName>","<passWord>"
+    Then User should verify the after login success Message "welcome Ramya"
+    When User search hotel "<state>","<city>","<roomType>","<checkInDate>","<checkOutDate>","<noOfRoom>","<noOfAdults>" and "<noOfChild>"
+    Then User should verify the search hotel success message "Select Hotel"
+    When User click sorting functionality hotel name with Ascending order
+    Then User should verify the displayed Hotel names are in Ascending order
+
+    Examples: 
+      | userName                  | passWord  | state      | city    | roomType | checkInDate | checkOutDate | noOfRoom | noOfAdults | noOfChild |
+      | ramyaganesan465@gmail.com | Shai@2021 | Tamil Nadu | Chennai | Luxury   | 2024-05-03  | 2024-05-07   | 3-Three  | 5-Five     |         2 |
+
+  Scenario Outline: Verifying hotel name in descending order
+    Given User is on the omrbranch page
+    When User login "<userName>","<passWord>"
+    Then User should verify the after login success Message "welcome Ramya"
+    When User search hotel "<state>","<city>","<roomType>","<checkInDate>","<checkOutDate>","<noOfRoom>","<noOfAdults>" and "<noOfChild>"
+    Then User should verify the search hotel success message "Select Hotel"
+    When User click sorting functionality hotel name with Descending order
+    Then User should verify the displayed Hotel names are in Descending order
+
+    Examples: 
+      | userName                  | passWord  | state      | city    | roomType | checkInDate | checkOutDate | noOfRoom | noOfAdults | noOfChild |
+      | ramyaganesan465@gmail.com | Shai@2021 | Tamil Nadu | Chennai | Luxury   | 2024-05-03  | 2024-05-07   | 3-Three  | 5-Five     |         2 |

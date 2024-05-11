@@ -1,0 +1,32 @@
+Feature: Verify omrbranch Login Module
+
+Scenario Outline: Verifying omrbranch login with valid data
+	Given User is on the omrbranch Page
+	When User enter "<userName>","<passWord>"
+	Then User should verify after login success message "welcome Keerthika"
+		
+	Examples:
+		|userName|passWord|
+		|keerthikakeerthuu@gmail.com|Keerthu18@|
+	
+
+Scenario Outline: Verifying omrbranch Login With Valid data using Enter Key
+	Given User on the OMR Branch Page
+	When User enter "<username>" and "<password>" 
+	And User using enterKey for login
+	Then User should verify after login Success Msg
+	
+	 Examples:
+		|username|password|
+		|keerthikakeerthuu@gmail.com|Keerthu18@|
+		
+@logThree
+Scenario Outline: User Login With Invalid credential
+	Given User on the OMR Branch Page
+	When User enter "<username>" and "<password>"
+	And User click login button
+	Then User should verify after login Error Msg
+	
+	Examples:
+		|username|password|
+		|keerthika@gmail.com|Keerthu18@|
